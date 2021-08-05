@@ -15,16 +15,21 @@ namespace MossRec.Models
     // The list of all possible criteria
     public static class CriteriaList
     {
-        public static List<Criteria> criterias { get; set; }
+        private static List<Criteria> _Criterias = new List<Criteria>();
+        public static List<Criteria> criterias
+        {
+            get { return _Criterias; }
+            set { _Criterias = value; }
+        }
         static CriteriaList()
         {
-            Criteria criteria = new Criteria();
             foreach(Technology Tec in TechnologyList.technologies)
             {
+                Criteria criteria = new Criteria();
                 criteria.TechnlogyName = Tec.name;
                 criteria.TecnologyId = Tec.guid;
                 criteria.YearsOfExperience = 0;
-                criterias.Add(criteria);
+                _Criterias.Add(criteria);
             }
         }
     }

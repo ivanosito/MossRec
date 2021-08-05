@@ -7,17 +7,21 @@
         <Frame BackgroundColor="#2196F3" Padding="24" CornerRadius="0">
             <Label Text="MOSSAD CANDIDATE SELECTOR!" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
         </Frame>
-        <Label Text="Start developing now" FontSize="Title" Padding="30,10,30,10"/>
-        <Label Text="Make changes to your XAML file and save to see your UI update in the running app with XAML Hot Reload. Give it a try!" FontSize="16" Padding="30,0,30,0"/>
-        <Label FontSize="16" Padding="30,24,30,0">
-            <Label.FormattedText>
-                <FormattedString>
-                    <FormattedString.Spans>
-                        <Span Text="Learn more at "/>
-                        <Span Text="https://aka.ms/xamarin-quickstart" FontAttributes="Bold"/>
-                    </FormattedString.Spans>
-                </FormattedString>
-            </Label.FormattedText>
-        </Label>
+        <Label Text="Select criteria now" FontSize="Title" Padding="30,10,30,10" HorizontalTextAlignment="Center"/>
+        <ListView x:Name="lviwCriteria" ItemSelected="lviwCriteria_ItemSelected">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell Text="{Binding TechnlogyName}" 
+                              Detail="{Binding YearsOfExperience}"
+                              TextColor="Teal"
+                              DetailColor="Black"/>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Label x:Name="lblTechnologyName" IsVisible="false" />
+        <Entry x:Name="txtYears" IsVisible="false" />
+        <Label x:Name="lblYrs" Text=" yrs." IsVisible="false" />
+        <Button x:Name="cmdOk" Text="Ok" Clicked="Button_Clicked" IsVisible="false"></Button>
+        <Button x:Name="cmdNext" Text="NEXT" Clicked="CmdNext_Clicked" BackgroundColor="#2196F3" TextColor="White"></Button>
     </StackLayout>
 </ContentPage>

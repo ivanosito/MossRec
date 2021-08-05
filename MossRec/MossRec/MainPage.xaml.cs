@@ -15,17 +15,36 @@ namespace MossRec
         public MainPage()
         {
             InitializeComponent();
+        }
 
-            string foo;
-            foreach (Candidate candidate in CandidateList.candidates)
-            {
-                if (candidate.experience.Count > 0)
-                {
-                    foo = candidate.experience[0].technologyId;
-                    SelectedIds.AddId(candidate.candidateId);
-                }
-            }
-            foo = "This is The End";
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            lviwCriteria.ItemsSource = CriteriaList.criterias;
+        }
+
+        private void Button_Clicked(object sender, EventArgs e)
+        {
+            var index = CriteriaList.criterias.FindIndex(c => c.TechnlogyName == lblTechnologyName.Text);
+            CriteriaList.criterias[index].YearsOfExperience = Int32.Parse(txtYears.Text);
+            Navigation.PushAsync(new MainPage());
+            this.Navigation.RemovePage(this.Navigation.NavigationStack[this.Navigation.NavigationStack.Count - 2]);
+        }
+
+        private void lviwCriteria_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            Criteria selectedCriteria = (Criteria)lviwCriteria.SelectedItem;
+            lblTechnologyName.Text = selectedCriteria.TechnlogyName;
+            lblTechnologyName.IsVisible = true;
+            txtYears.IsVisible = true;
+            lblYrs.IsVisible = true;
+            cmdOk.IsVisible = true;
+        }
+
+        private void CmdNext_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new CandidateSwiper());
         }
     }
 }

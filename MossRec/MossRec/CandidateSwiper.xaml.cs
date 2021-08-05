@@ -17,28 +17,31 @@ namespace MossRec
         {
             // List of selected criteria
             List<Criteria> SelectedCriteria = CriteriaList.criterias.Where(c => c.YearsOfExperience > 0).ToList();
-            // Filter CandidateList
-            Candidate candidate = new Candidate();
+            // Filter CandidateList --  actually Candidates' Id's.
+            //Candidate candidate = new Candidate();
             foreach (Candidate Cand in CandidateList.candidates)
             {
+                int intCriteriaCount = 0;
+                int intExperienceCount = 0;
                 foreach (Criteria Cri in SelectedCriteria)
                 {
-                    foreach(Experience Exp in Cand.experience)
+                    foreach (Experience Exp in Cand.experience)
                     {
                         // Check if there's no match
-                        if(Cri.TecnologyId != Exp.technologyId)   // A certaing required technolgy is not among Candidates experience
+                        if ((Cri.TecnologyId == Exp.technologyId) && (Exp.yearsOfExperience >= Cri.YearsOfExperience))
                         {
-                            // Remove current Candidate from Candidatelist
-                            CandidateList.RemoveCandidate(Cand);
-                        } 
-                        else if(Cri.YearsOfExperience > Exp.yearsOfExperience) // Candidate has a required technology. Check if years of Experience are not enough
-                        {
-                            // Remove current Candidate from Candidatelist
-                            CandidateList.RemoveCandidate(Cand);
+                            intExperienceCount++;
                         }
                     }
+                    intCriteriaCount++;
+                }
+                if (intCriteriaCount != intExperienceCount)
+                {
+                    CandidateList.MarkForDeletion(Cand);
                 }
             }
+            // Delete all Candidates marked for deletion
+            CandidateList.candidates.RemoveAll(c => c.barcode == "Bórrame2021");
             // Now static CandidateList.candidates has the Candidates that matches de criterias.
             // 
             // The first Candidate will be used as datasource for the Form of this Page.

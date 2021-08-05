@@ -43,7 +43,7 @@ namespace MossRec.Models
             _Candidates = JsonConvert.DeserializeObject<List<Candidate>>(jsonCandidates);
         }
 
-        // The method to add an Id to the list of selected Candidates Ids - Used in the initial criteria maching
+        // The method to add a Candidate to the list of selected Candidates Ids - Used in the initial criteria maching
         public static void AddCandidate(Candidate NewCandidate)
         {
             _Candidates.Add(NewCandidate);
@@ -52,9 +52,20 @@ namespace MossRec.Models
         public static void RemoveCandidate(Candidate CandidatetoRemove)
         {
             _Candidates.Remove(CandidatetoRemove);
+        }        // The method to remove a Candidata Id from the list of selected Candidates Ids - Used when swiping right
+        public static void MarkForDeletion(Candidate CandidatetoUpdate)
+        {
+            var theCandidate = _Candidates.Find(x => x.candidateId == CandidatetoUpdate.candidateId);
+            if (theCandidate != null) {
+                theCandidate.barcode = "Bórrame2021";
+            }
         }
     }
 
+    class CandidateId
+    {
+        string Id;
+    }
     // The list of the Ids of the selected Candidates
     public static class SelectedIds
     {
