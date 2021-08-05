@@ -1,0 +1,35 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31515.178
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MossRec.Android", "MossRec\MossRec.Android\MossRec.Android.csproj", "{1C9D7049-8587-47A4-A562-3B88B44755D5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MossRec", "MossRec\MossRec\MossRec.csproj", "{FDCDC6AA-6899-43EE-973D-8E7F6A198EED}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1C9D7049-8587-47A4-A562-3B88B44755D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C9D7049-8587-47A4-A562-3B88B44755D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C9D7049-8587-47A4-A562-3B88B44755D5}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{1C9D7049-8587-47A4-A562-3B88B44755D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C9D7049-8587-47A4-A562-3B88B44755D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1C9D7049-8587-47A4-A562-3B88B44755D5}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{FDCDC6AA-6899-43EE-973D-8E7F6A198EED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FDCDC6AA-6899-43EE-973D-8E7F6A198EED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FDCDC6AA-6899-43EE-973D-8E7F6A198EED}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{FDCDC6AA-6899-43EE-973D-8E7F6A198EED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FDCDC6AA-6899-43EE-973D-8E7F6A198EED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FDCDC6AA-6899-43EE-973D-8E7F6A198EED}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CCFB6631-5C68-4FCE-AE75-B0393AACABE0}
+	EndGlobalSection
+EndGlobal
