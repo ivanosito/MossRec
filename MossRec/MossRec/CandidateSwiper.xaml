@@ -4,9 +4,13 @@
              x:Class="MossRec.CandidateSwiper">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
+            <Label Text="Swipe!"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
+            <Label x:Name="lblMessage"
+                   VerticalOptions="CenterAndExpand"
+                   HorizontalOptions="Center" />
+            <Button x:Name="cmdChosenList" Text="CHOSEN LIST"  BackgroundColor="#2196F3" TextColor="White" Clicked="cmdChosenList_Clicked" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

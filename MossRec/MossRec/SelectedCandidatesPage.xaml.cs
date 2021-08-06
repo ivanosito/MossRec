@@ -6,16 +6,23 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using MossRec.Models;
 
 namespace MossRec
 {
     // Show a list of the static CandidateList.
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class SelectedCandidates : ContentPage
+    public partial class SelectedCandidatesPage : ContentPage
     {
-        public SelectedCandidates()
+        public SelectedCandidatesPage()
         {
             InitializeComponent();
+        }
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            lviwChosenList.ItemsSource = CandidateList.candidates;
         }
     }
 }

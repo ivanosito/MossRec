@@ -17,10 +17,16 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="SelectedCandidatesPage.xaml.cs">
+      <DependentUpon>SelectedCandidatesPage.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
     <EmbeddedResource Update="CandidateSwiper.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="SelectedCandidates.xaml">
+    <EmbeddedResource Update="SelectedCandidatesPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

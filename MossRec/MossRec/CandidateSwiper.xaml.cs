@@ -48,11 +48,21 @@ namespace MossRec
             // The form detects swipes.
             // On each swipe it will do:
             // 1. If it was to the right -> Remove the Candidate from list.
-            // 2. If there are no more candidates, go to next Page.
+            // 2. If there are no more candidates, go to next Page (SelectedCandidatesPage).
             // 3. Load next Candidate data on the Form.
             InitializeComponent();
        }
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
 
+            lblMessage.Text = "Total of selected candidates: " + CandidateList.candidates.Count.ToString();
+        }
 
+        private void cmdChosenList_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new SelectedCandidatesPage());
+            //this.Navigation.RemovePage(this.Navigation.NavigationStack[this.Navigation.NavigationStack.Count - 2]);
+        }
     }
 }
