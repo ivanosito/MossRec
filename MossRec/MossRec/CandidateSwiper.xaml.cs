@@ -13,6 +13,8 @@ namespace MossRec
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CandidateSwiper : ContentPage
     {
+        protected int intCandidateIndex = new int();
+        protected Candidate CurrentCandidate = new Candidate();
         public CandidateSwiper()
         {
             // List of selected criteria
@@ -57,12 +59,49 @@ namespace MossRec
             base.OnAppearing();
 
             lblMessage.Text = "Total of selected candidates: " + CandidateList.candidates.Count.ToString();
+            intCandidateIndex = 0;
+            imgPhoto.Source = CandidateList.candidates[intCandidateIndex].profilePicture;
+            CurrentCandidate = CandidateList.candidates[intCandidateIndex];
+            lblMessage.Text = "(" + (intCandidateIndex+1).ToString() + "/" + CandidateList.candidates.Count.ToString() + ")" + CurrentCandidate.firstName + "?";
         }
 
         private void cmdChosenList_Clicked(object sender, EventArgs e)
         {
             Navigation.PushAsync(new SelectedCandidatesPage());
             //this.Navigation.RemovePage(this.Navigation.NavigationStack[this.Navigation.NavigationStack.Count - 2]);
+        }
+
+        private void SwipeGestureRecognizer_Swiped(object sender, SwipedEventArgs e)
+        {
+            switch (e.Direction)
+            {
+                case SwipeDirection.Left:
+                    lblMessage.Text = CurrentCandidate.firstName + " : REJECTED";
+                    CandidateList.MarkForDeletion(CurrentCandidate);
+                    break;
+                case SwipeDirection.Right:
+                    lblMessage.Text = CurrentCandidate.firstName + " : ACCEPTED";
+                    break;
+                case SwipeDirection.Up:
+                    // Handle the swipe
+                    break;
+                case SwipeDirection.Down:
+                    // Handle the swipe
+                    break;
+            }
+            if (intCandidateIndex < CandidateList.candidates.Count - 1)
+            {
+                intCandidateIndex++;
+                imgPhoto.Source = CandidateList.candidates[intCandidateIndex].profilePicture;
+                CurrentCandidate = CandidateList.candidates[intCandidateIndex];
+                lblMessage.Text = "(" + (intCandidateIndex + 1).ToString() + "/" + CandidateList.candidates.Count.ToString() + ")" + lblMessage.Text + " || " + CurrentCandidate.firstName + "?";
+            }
+            else
+            {
+                CandidateList.candidates.RemoveAll(c => c.barcode == "Bórrame2021");
+                DisplayAlert("Swipe finished", "All candidates have been seen.", "Finish");
+                Navigation.PushAsync(new SelectedCandidatesPage());
+            }
         }
     }
 }
